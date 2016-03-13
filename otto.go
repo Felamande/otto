@@ -655,6 +655,13 @@ func (self Object) Keys() []string {
 	return keys
 }
 
+func (self Object) ForEach(f func(key string)) {
+	self.object.enumerate(false, func(name string) bool {
+		f(name)
+		return true
+	})
+}
+
 // Class will return the class string of the object.
 //
 // The return value will (generally) be one of:
